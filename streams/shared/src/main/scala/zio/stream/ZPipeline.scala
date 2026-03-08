@@ -2122,6 +2122,9 @@ object ZPipeline extends ZPipelinePlatformSpecificConstructors {
   }
 
   private object Trie {
+    private val _empty               = Trie(structure = Map.empty[Nothing, Trie[Nothing]], depth = 0, isLeaf = false)
+    def empty[T]: Trie[T]            = _empty.asInstanceOf[Trie[T]]
+
     private final case class MutableTrie[T](
       structure: scala.collection.mutable.Map[T, MutableTrie[T]],
       depth: Int,
